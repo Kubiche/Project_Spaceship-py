@@ -1,6 +1,4 @@
-import math
-import time
-import serial
+#import serial
 import pygame
 from rocket import Rocket
 
@@ -20,13 +18,13 @@ pygame.joystick.init()
 
 
 # Sound instances
-mainenginesound = pygame.mixer.Sound("/Sounds/main_engines.mp3")
+mainenginesound = pygame.mixer.Sound("C:\Users\jalvarez\My Drive\CODE\Project_Spacecraft_py\Project_Spaceship_Rpi\Sounds\main_engines.mp3")
 
 
 
 r1 = Rocket()
 
-ser = serial.serial()
+#ser = serial.serial()
 
 while True:
     for event in pygame.event.get():
@@ -35,3 +33,4 @@ while True:
     
     
     r1.update  # Updates the rocket properties like velocity, altitude etc.
+    clock.tick(30)
