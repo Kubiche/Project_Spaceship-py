@@ -18,7 +18,7 @@ pygame.joystick.init()
 
 
 # Sound instances
-mainenginesound = pygame.mixer.Sound("C:\Users\jalvarez\My Drive\CODE\Project_Spacecraft_py\Project_Spaceship_Rpi\Sounds\main_engines.mp3")
+mainenginesound = pygame.mixer.Sound("C:\\Users\\jalvarez\\My Drive\\CODE\\Project_Spacecraft_py\\Project_Spaceship_Rpi\\Sounds\\main_engines.mp3")
 
 
 
@@ -29,8 +29,11 @@ r1 = Rocket()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEWHEEL:
-            mainenginesound.play(-1)
+            mainenginesound.play()
     
     
     r1.update  # Updates the rocket properties like velocity, altitude etc.
     clock.tick(30)
+
+
+pygame.quit()
