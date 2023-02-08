@@ -1,6 +1,39 @@
+import os
 #import serial
 import pygame
 from rocket import Rocket
+
+
+WIDTH,HEIGTH = 800, 600
+WIN = pygame.display.set_mode((WIDTH, HEIGTH))
+SPACE_GREY = (101,115,126)
+FPS = 60
+pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
+
+
+class Game:
+    def __init__(self,running = True):
+        self.running = running 
+
+
+def check_events():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            session.running = False        
+        if event.type == pygame.KEYDOWN:
+            print("Key press detected")
+            if event.key == pygame.K_ESCAPE:
+                print("Escape key pressed")
+                session.running = False
+            if event.key == pygame.K_k:
+                print("k key pressed")
+                mainenginesound.play(-1)
+
+
+def draw_window():
+    WIN.fill(SPACE_GREY)
+    pygame.display.update()
+
 
 # Initialize the mixer
 pygame.mixer.pre_init(48000, -16, 1, 1024)  #was 1024
@@ -22,37 +55,27 @@ joystick_count = pygame.joystick.get_count()
 #joystick = pygame.joystick.Joystick(0)
 #joystick.init()
 
-
 # Sound instances
-mainenginesound = pygame.mixer.Sound("C:\\Users\\jalvarez\\My Drive\\CODE\\Project_Spacecraft_py\\Project_Spaceship_Rpi\\Sounds\\main_engines.mp3")
+mainenginesound = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
 
-pygame.display.set_mode((800, 600))
+
 
 
 
 r1 = Rocket()
+session = Game()
 
 
 # ser = serial.Serial("/dev/ttyAMA0", 115200)
 # serialFromArduino.flush()
 
-on = True
 
-while on:    
-    for event in pygame.event.get():        
-        if event.type == pygame.KEYDOWN:
-            print("Key press detected")
-            if event.key == pygame.K_ESCAPE:
-                print("Escape key pressed")
-                on = False
-            if event.key == pygame.K_k:
-                print("k key pressed")
-                mainenginesound.play(-1)
 
-    
-    
+while session.running:
+    clock.tick(FPS)    
+    check_events()     
     r1.update  # Updates the rocket properties like velocity, altitude etc.
-    clock.tick(30)
+    draw_window()
 
 
 pygame.quit()
