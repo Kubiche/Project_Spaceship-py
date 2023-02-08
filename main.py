@@ -16,6 +16,12 @@ clock = pygame.time.Clock()
 # Initialize the joysticks
 pygame.joystick.init()
 
+# Get count of joysticks
+joystick_count = pygame.joystick.get_count()
+
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+
 
 # Sound instances
 mainenginesound = pygame.mixer.Sound("C:\\Users\\jalvarez\\My Drive\\CODE\\Project_Spacecraft_py\\Project_Spaceship_Rpi\\Sounds\\main_engines.mp3")
@@ -24,7 +30,9 @@ mainenginesound = pygame.mixer.Sound("C:\\Users\\jalvarez\\My Drive\\CODE\\Proje
 
 r1 = Rocket()
 
-#ser = serial.serial()
+
+# ser = serial.Serial("/dev/ttyAMA0", 115200)
+# serialFromArduino.flush()
 
 while True:
     for event in pygame.event.get():
