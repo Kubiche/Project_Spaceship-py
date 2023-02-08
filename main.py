@@ -4,11 +4,21 @@ import pygame
 from rocket import Rocket
 
 
-WIDTH,HEIGTH = 800, 600
+WIDTH,HEIGTH = 1920, 1080
 WIN = pygame.display.set_mode((WIDTH, HEIGTH))
 SPACE_GREY = (101,115,126)
 FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
+
+
+
+
+
+# Images
+CRAFT_WIDTH, CRAFT_HEIGTH = 400, 200
+CRAFT_IMAGE = pygame.image.load(os.path.join('Assets', 'Images', 'craft.png'))
+CRAFT_OPEN_DOOR_IMAGE = pygame.image.load(os.path.join('Assets', 'Images', 'craft_open_door.png'))
+CRAFT_ENGINE_ON_IMAGE = pygame.image.load(os.path.join('Assets', 'Images', 'craft_engine_on.png'))
 
 
 class Game:
@@ -27,11 +37,16 @@ def check_events():
                 session.running = False
             if event.key == pygame.K_k:
                 print("k key pressed")
-                mainenginesound.play(-1)
+                r1.angle = 45
+                global craft
+                craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+                MAIN_ENGINE_SOUND.play(-1)
 
 
 def draw_window():
+    
     WIN.fill(SPACE_GREY)
+    WIN.blit(craft, (((WIDTH-CRAFT_WIDTH)*0.5),((HEIGTH-CRAFT_HEIGTH)*0.5)))
     pygame.display.update()
 
 
@@ -56,14 +71,15 @@ joystick_count = pygame.joystick.get_count()
 #joystick.init()
 
 # Sound instances
-mainenginesound = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
-
-
+MAIN_ENGINE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
 
 
 
 r1 = Rocket()
 session = Game()
+
+
+craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
 
 # ser = serial.Serial("/dev/ttyAMA0", 115200)
