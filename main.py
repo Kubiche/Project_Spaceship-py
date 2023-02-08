@@ -35,12 +35,20 @@ def check_events():
             if event.key == pygame.K_ESCAPE:
                 print("Escape key pressed")
                 session.running = False
-            if event.key == pygame.K_k:
+            if event.key == pygame.K_k:  # Engine ON
                 print("k key pressed")
-                r1.angle = 45
+                r1.angle = 60
                 global craft
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
+            if event.key == pygame.K_l:  # Engine OFF
+                print("k key pressed")
+                craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+                MAIN_ENGINE_SOUND.stop()
+            if event.key == pygame.K_LEFT
+                r1.angle += 1
+                craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+
 
 
 def draw_window():
