@@ -37,17 +37,26 @@ def check_events():
                 session.running = False
             if event.key == pygame.K_k:  # Engine ON
                 print("k key pressed")
-                r1.angle = 60
+                r1.angle = 90
+                r1.acceleration = 20
                 global craft
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
+                r1.engine_on = True
             if event.key == pygame.K_l:  # Engine OFF
-                print("k key pressed")
+                print("l key pressed")
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.stop()
-            if event.key == pygame.K_LEFT
-                r1.angle += 1
-                craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+                r1.engine_on = False
+                r1.acceleration = -0.01
+            if event.key == pygame.K_LEFT:
+                if r1.engine_on == True:
+                    r1.angle += 1
+                    craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+            if event.key == pygame.K_RIGHT:
+                if r1.engine_on == True:
+                    r1.angle -= 1
+                    craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
 
 
@@ -98,8 +107,9 @@ craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH
 while session.running:
     clock.tick(FPS)    
     check_events()     
-    r1.update  # Updates the rocket properties like velocity, altitude etc.
+    r1.update()  # Updates the rocket properties like velocity, altitude etc.
     draw_window()
+    print(r1.velocity)
 
 
 pygame.quit()
