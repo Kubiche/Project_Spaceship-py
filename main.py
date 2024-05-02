@@ -1,5 +1,5 @@
 import os
-#import serial
+import serial
 import pygame
 from rocket import Rocket
 
