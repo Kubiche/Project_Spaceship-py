@@ -27,7 +27,7 @@ class Game:
         self.running = running 
 
 
-def check_events():
+def get_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             session.running = False        
@@ -39,7 +39,8 @@ def check_events():
             if event.key == pygame.K_k:  # Engine ON
                 print("k key pressed")
                 r1.angle = 90
-                r1.acceleration = 20
+                r1.acceleration = 15
+                r1.altitude += 10                
                 global craft
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
@@ -49,7 +50,7 @@ def check_events():
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.stop()
                 r1.engine_on = False
-                r1.acceleration = -0.01
+                r1.acceleration = -10
             if event.key == pygame.K_LEFT:
                 if r1.engine_on == True:
                     r1.angle += 1
@@ -107,7 +108,7 @@ craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH
 
 while session.running:
     clock.tick(FPS)    
-    check_events()     
+    get_events()     
     r1.update()  # Updates the rocket properties like velocity, altitude etc.
     draw_window()
     print(r1.velocity)

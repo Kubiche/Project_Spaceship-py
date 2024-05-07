@@ -12,9 +12,9 @@ class Rocket:
         self.engine_on = False
         self.acceleration = 0
     
-    def update(self):       
-        self.velocity += self.acceleration
-        self.altitude += self.velocity
-        if self.altitude < 0:  # Prevent altitudes lower than 0
-            self.altitude = 0
+    def update(self):              
+        if self.altitude > 0:  # Prevent altitudes lower than 0
+            self.velocity += (self.acceleration - 10)
+            self.altitude += self.velocity
+            
         
