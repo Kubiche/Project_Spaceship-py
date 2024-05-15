@@ -50,7 +50,7 @@ def check_events():
             if event.key == pygame.K_ESCAPE:
                 print("Escape key pressed")
                 session.running = False
-            if event.key == pygame.K_k:  # Engine ON
+            if event.key == pygame.K_k or event.type == pygame.JOYBUTTONDOWN:  # Engine ON
                 print("k key pressed")
                 r1.angle = 90
                 r1.acceleration = 20
@@ -59,7 +59,7 @@ def check_events():
                 MAIN_ENGINE_SOUND.play(-1)
                 MAIN_ENGINE_SOUND.set_volume(1)
                 r1.engine_on = True
-            if event.key == pygame.K_l:  # Engine OFF
+            if event.key == pygame.K_l or event.type == pygame.JOYBUTTONUP:  # Engine OFF
                 print("l key pressed")
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.stop()
