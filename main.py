@@ -30,6 +30,21 @@ def check_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             session.running = False        
+        if event.type == pygame.JOYBUTTONDOWN:
+            print("Joystick button down")
+            r1.angle = 90
+            r1.acceleration = 20
+            global craft
+            craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+            MAIN_ENGINE_SOUND.play(-1)
+            MAIN_ENGINE_SOUND.set_volume(1)
+            r1.engine_on = True
+        if event.type == pygame.JOYBUTTONUP:
+            print("Joystick button up")
+            craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+            MAIN_ENGINE_SOUND.stop()
+            r1.engine_on = False
+            r1.acceleration = -0.01
         if event.type == pygame.KEYDOWN:
             print("Key press detected")
             if event.key == pygame.K_ESCAPE:
@@ -39,9 +54,10 @@ def check_events():
                 print("k key pressed")
                 r1.angle = 90
                 r1.acceleration = 20
-                global craft
+                # global craft
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
+                MAIN_ENGINE_SOUND.set_volume(1)
                 r1.engine_on = True
             if event.key == pygame.K_l:  # Engine OFF
                 print("l key pressed")
@@ -82,11 +98,13 @@ clock = pygame.time.Clock()
 pygame.joystick.init()
 
 # Get count of joysticks
+
 joystick_count = pygame.joystick.get_count()
+print("Joystick Count:", joystick_count)
 
-#joystick = pygame.joystick.Joystick(0)
-#joystick.init()
-
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+print("Joystick:", joystick.get_name())
 # Sound instances
 MAIN_ENGINE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
 
@@ -109,7 +127,7 @@ while session.running:
     check_events()     
     r1.update()  # Updates the rocket properties like velocity, altitude etc.
     draw_window()
-    print(r1.velocity)
+    print("Velocity:", r1.velocity)
 
 
 pygame.quit()

@@ -1,0 +1,87 @@
+pygame 2.5.2 (SDL 2.26.5, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Key press detected
+k key pressed
+20
+Key press detected
+k key pressed
+Key press detected
+l key pressed
+19.99
+19.979999999999997
+Key press detected
+k key pressed
+39.98
+59.98
+Key press detected
+l key pressed
+59.97
+59.96
+59.95
+59.940000000000005
+59.93000000000001
+59.92000000000001
+59.91000000000001
+59.90000000000001
+59.890000000000015
+59.88000000000002
+59.87000000000002
+59.86000000000002
+59.85000000000002
+59.840000000000025
+59.83000000000003
+59.82000000000003
+59.81000000000003
+59.80000000000003
+59.790000000000035
+59.78000000000004
+59.77000000000004
+pygame 2.5.2 (SDL 2.26.5, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Key press detected
+k key pressed
+Key press detected
+k key pressed
+Key press detected
+l key pressed
+Key press detected
+l key pressed
+Key press detected
+Escape key pressed
+Key press detected
+Escape key pressed
+Key press detected
+Escape key pressed
+-0.01
+pygame 2.5.2 (SDL 2.26.5, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Traceback (most recent call last):
+  File "/home/nimda/Project_Spaceship_Rpi/main.py", line 88, in <module>
+    joystick = pygame.joystick.Joystick(0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pygame.error: Invalid joystick device number
+pygame 2.5.2 (SDL 2.26.5, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Traceback (most recent call last):
+  File "/home/nimda/Project_Spaceship_Rpi/main.py", line 88, in <module>
+    joystick = pygame.joystick.Joystick(0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pygame.error: Invalid joystick device number
+pygame 2.5.2 (SDL 2.26.5, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Traceback (most recent call last):
+  File "/home/nimda/Project_Spaceship_Rpi/main.py", line 88, in <module>
+    joystick = pygame.joystick.Joystick(0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pygame.error: Invalid joystick device number
