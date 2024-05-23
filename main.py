@@ -1,4 +1,5 @@
 # This is still under construction =(
+# Created by: JC 
 import os
 import serial
 import pygame
