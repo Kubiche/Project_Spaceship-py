@@ -11,7 +11,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGTH))
 SPACE_GREY = (101,115,126)
 FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
-global craft
+
 
 
 
