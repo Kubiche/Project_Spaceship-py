@@ -11,6 +11,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGTH))
 SPACE_GREY = (101,115,126)
 FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
+global craft
 
 
 
@@ -26,10 +27,11 @@ CRAFT_ENGINE_ON_IMAGE = pygame.image.load(os.path.join('Assets', 'Images', 'craf
 class Game:
     def __init__(self,running = True):
         self.running = running
-        global craft 
+        
 
 
 def get_events():
+    global craft
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             session.running = False
