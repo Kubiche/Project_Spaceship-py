@@ -90,7 +90,7 @@ def draw_window():
     pygame.display.update()
 
 def send_panel_command(command_type, device_number, value): # command types are 0-lamp test 1-show in led-bar 2-control led | device number: bar or led number | value: 0-10 for bar or on\off for led
-    command_buffer = [0,0,0,'\n']
+    command_buffer = [0,0,0,"\n"]
     command_buffer[0] = command_type
     command_buffer[1] = device_number
     command_buffer[2] = value
