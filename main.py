@@ -113,8 +113,8 @@ pygame.joystick.init()
 # Get count of joysticks
 joystick_count = pygame.joystick.get_count()
 
-#joystick = pygame.joystick.Joystick(0)
-#joystick.init()
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
 
 # Sound instances
 MAIN_ENGINE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
