@@ -25,7 +25,8 @@ CRAFT_ENGINE_ON_IMAGE = pygame.image.load(os.path.join('Assets', 'Images', 'craf
 
 class Game:
     def __init__(self,running = True):
-        self.running = running 
+        self.running = running
+        global craft 
 
 
 def get_events():
@@ -37,7 +38,7 @@ def get_events():
             r1.angle = 90
             r1.acceleration = 15
             r1.altitude += 10                
-            global craft
+            #global craft
             craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
             MAIN_ENGINE_SOUND.play(-1)
             r1.engine_on = True
@@ -59,7 +60,7 @@ def get_events():
                 r1.angle = 90
                 r1.acceleration = 15
                 r1.altitude += 10                
-                global craft
+                #global craft
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
                 r1.engine_on = True
@@ -125,7 +126,7 @@ session = Game()
 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
 
-ser = serial.Serial("/dev/ttyAMA0", 115200)
+ser = serial.Serial("usb-SparkFun_Panel_HIDBF-if00", 115200)
 ser.flush()
 #send_panel_command(0,0,0) # send a lamp-test command to the panel
 
