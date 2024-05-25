@@ -7,11 +7,11 @@ from rocket import Rocket
 
 
 WIDTH,HEIGTH = 1920, 1080
-WIN = pygame.display.set_mode((WIDTH, HEIGTH))
+WIN = pygame.display.set_mode((WIDTH, HEIGTH), pygame.HWSURFACE | pygame.DOUBLEBUF)
 SPACE_GREY = (101,115,126)
 FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
-
+global craft
 
 
 
