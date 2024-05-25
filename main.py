@@ -31,7 +31,24 @@ class Game:
 def get_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            session.running = False        
+            session.running = False
+        if event.type == pygame.JOYBUTTONDOWN:
+            print("Joystick Button Pressed")
+            r1.angle = 90
+            r1.acceleration = 15
+            r1.altitude += 10                
+            global craft
+            craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+            MAIN_ENGINE_SOUND.play(-1)
+            r1.engine_on = True
+            send_panel_command(0,0,1) # send a lamp-test command to the panel
+        if event.type == pygame.JOYBUTTONUP:
+            print("Joystick Button Depressed")
+            craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+            MAIN_ENGINE_SOUND.stop()
+            r1.engine_on = False
+            r1.acceleration = -10
+            send_panel_command(0,0,0) # send a lamp-test command to the panel     
         if event.type == pygame.KEYDOWN:
             print("Key press detected")
             if event.key == pygame.K_ESCAPE:
@@ -70,10 +87,10 @@ def draw_window():
     pygame.display.update()
 
 def send_panel_command(command_type, device_number, value): # command types are 0-lamp test 1-show in led-bar 2-control led | device number: bar or led number | value: 0-10 for bar or on\off for led
-    command_buffer = [0,0,0,'\n']
-    command_buffer[0] = command_type
-    command_buffer[1] = device_number
-    command_buffer[2] = value
+    command_buffer = ['0','0','0','\n']
+    command_buffer[0] = chr(command_type)
+    command_buffer[1] = chr(device_number)
+    command_buffer[2] = chr(value)
     ser.write(command_buffer)
 
 # Initialize the mixer
@@ -110,7 +127,7 @@ craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH
 
 ser = serial.Serial("/dev/ttyAMA0", 115200)
 ser.flush()
-send_panel_command(0,0,0) # send a lamp-test command to the panel
+#send_panel_command(0,0,0) # send a lamp-test command to the panel
 
 
 
