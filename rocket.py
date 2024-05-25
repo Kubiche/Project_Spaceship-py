@@ -20,9 +20,7 @@ class Rocket:
         if self.altitude > 0:  # Prevent altitudes lower than 0
             self.velocity += (self.acceleration - 10)
             self.altitude += self.velocity
-            ser.send_panel_command(1,1,self.solid_fuel)
-            ser.send_panel_command(1,2,self.lox_fuel)
-            ser.send_panel_command(1,3,self.battery_charge)
+            
 
 
             
