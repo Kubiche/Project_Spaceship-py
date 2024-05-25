@@ -126,7 +126,7 @@ session = Game()
 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
 
-ser = serial.Serial("usb-SparkFun_Panel_HIDBF-if00", 115200)
+ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
 ser.flush()
 #send_panel_command(0,0,0) # send a lamp-test command to the panel
 
