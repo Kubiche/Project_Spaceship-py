@@ -91,13 +91,10 @@ def draw_window():
     WIN.blit(craft, (((WIDTH-CRAFT_WIDTH)*0.5),((HEIGTH-CRAFT_HEIGTH)*0.5)))
     pygame.display.update()
 
-def send_panel_command(command_type, device_number, value): # command types are 0-lamp test 1-show in led-bar 2-control led | device number: bar or led number | value: 0-10 for bar or on\off for led
-    command_buffer = [0,0,0,10]
-    command_buffer[0] = command_type
-    command_buffer[1] = device_number
-    command_buffer[2] = value
-    ser.write(command_buffer)
-    print(command_buffer)
+def send_panel_command(command_type, command, value): # command types are 0-lamp test 1-show in led-bar 2-control led | device number: bar or led number | value: 0-10 for bar or on\off for led
+    command_string = "{:1.0f},{:1.0f},{:1.0f}\n".format(command_type,command,value)    
+    print(ser.write(command_string))
+    
 
 # Initialize the mixer
 pygame.mixer.pre_init(48000, -16, 1, 1024)  #was 1024
@@ -133,7 +130,7 @@ craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH
 
 ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
 ser.flush()
-#send_panel_command(0,0,0) # send a lamp-test command to the panel
+
 
 
 
