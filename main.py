@@ -35,6 +35,8 @@ def get_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             session.running = False
+        if event.type == pygame.JOYDEVICEADDED:
+            joystick = pygame.joystick.Joystick(0)            
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
@@ -111,19 +113,13 @@ clock = pygame.time.Clock()
 pygame.joystick.init()
 
 # Get count of joysticks
-joystick_count = pygame.joystick.get_count()
-
-joystick = pygame.joystick.Joystick(0)
-joystick.init()
+#joystick_count = pygame.joystick.get_count()
 
 # Sound instances
 MAIN_ENGINE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
 
-
-
 r1 = Rocket()
 session = Game()
-
 
 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
