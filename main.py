@@ -36,7 +36,8 @@ def get_events():
         if event.type == pygame.QUIT:
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:
-            joystick = pygame.joystick.Joystick(0)            
+            Panel1 = pygame.joystick.Joystick(0)
+            Panel1_instance_id = Panel1.get_instance_id()           
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
