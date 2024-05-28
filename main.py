@@ -44,14 +44,14 @@ def get_events():
             craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
             MAIN_ENGINE_SOUND.play(-1)
             r1.engine_on = True
-            send_panel_command(0,0,1) # send a lamp-test command to the panel
+            send_panel_command(2,1,True) # send a LED 1 ON command
         if event.type == pygame.JOYBUTTONUP:
             print("Joystick Button Depressed")
             craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
             MAIN_ENGINE_SOUND.stop()
             r1.engine_on = False
             r1.acceleration = -10
-            send_panel_command(0,0,0) # send a lamp-test command to the panel     
+            send_panel_command(2,1,False) # send a "LED 1 OFF" command     
         if event.type == pygame.KEYDOWN:
             print("Key press detected")
             if event.key == pygame.K_ESCAPE:
@@ -66,12 +66,14 @@ def get_events():
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.play(-1)
                 r1.engine_on = True
+                send_panel_command(2,1,True) # send a LED 1 ON command
             if event.key == pygame.K_l:  # Engine OFF
                 print("l key pressed")
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.stop()
                 r1.engine_on = False
                 r1.acceleration = -10
+                send_panel_command(2,1,False) # send a "LED 1 OFF" command  
             if event.key == pygame.K_LEFT:
                 if r1.engine_on == True:
                     r1.angle += 1
