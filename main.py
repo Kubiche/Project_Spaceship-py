@@ -123,9 +123,14 @@ session = Game()
 
 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
+try:
+    ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
+    ser.flush()
+    print("Panel Connected!")
+except:
+    print("Panel NOT Connected")
 
-ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
-ser.flush()
+
 
 
 
