@@ -37,13 +37,7 @@ def get_events():
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:
             Panel1 = pygame.joystick.Joystick(0)
-            Panel1_instance_id = Panel1.get_instance_id()
-            try:
-                ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
-                ser.flush()
-                print("Panel Connected!")
-            except:
-                print("Panel NOT Connected")           
+            Panel1_instance_id = Panel1.get_instance_id()                       
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
@@ -130,10 +124,8 @@ session = Game()
 
 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
 
-
-
-
-
+ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
+ser.flush()
 
 
 while session.running:
