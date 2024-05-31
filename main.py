@@ -96,7 +96,7 @@ def draw_window():
 
 def send_panel_command(command_type, command, value): # command types are 0-lamp test 1-show in led-bar 2-control led | device number: bar or led number | value: 0-10 for bar or on\off for led
     command_string = "{:1.0f},{:1.0f},{:1.0f}\n".format(command_type,command,value)    
-    print(ser.write(command_string))
+    ser.write(command_string)
     
 
 # Initialize the mixer
