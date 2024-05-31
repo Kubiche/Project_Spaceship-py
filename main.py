@@ -37,7 +37,8 @@ def get_events():
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:
             Panel1 = pygame.joystick.Joystick(0)
-            Panel1_instance_id = Panel1.get_instance_id()                       
+            Panel1_instance_id = Panel1.get_instance_id()
+            print("Joystick Added")                       
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
@@ -133,7 +134,7 @@ while session.running:
     get_events()     
     r1.update()  # Updates the rocket properties like velocity, altitude etc.
     draw_window()
-    print(r1.velocity)
+    #print(r1.velocity)
 
 
 pygame.quit()
