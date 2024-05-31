@@ -12,6 +12,9 @@ SPACE_GREY = (101,115,126)
 FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
 global craft
+global Panel1
+global panel1_instance_id
+global ser
 
 
 
@@ -36,7 +39,12 @@ def get_events():
         if event.type == pygame.QUIT:
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:            
-            print("Joystick Added")                                               
+            print("Joystick Added")
+            joystick_count = pygame.joystick.get_count()            
+            Panel1 = pygame.joystick.Joystick(0)            
+            panel1_instance_id = Panel1.get_instance_id()            
+            ser = serial.Serial("/dev/serial/by-id/usb-SparkFun_Panel_HIDBF-if00", 115200)
+            ser.flush()                                               
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
