@@ -35,11 +35,8 @@ def get_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             session.running = False
-        if event.type == pygame.JOYDEVICEADDED:
-            Panel1 = pygame.joystick.Joystick(0)
-            panel1_instance_id = Panel1.get_instance_id()
-            print("Joystick Added")
-            print(panel1_instance_id)                                   
+        if event.type == pygame.JOYDEVICEADDED:            
+            print("Joystick Added")                                               
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
@@ -114,9 +111,10 @@ clock = pygame.time.Clock()
 
 # Initialize the joysticks
 pygame.joystick.init()
-
 # Get count of joysticks
-#joystick_count = pygame.joystick.get_count()
+joystick_count = pygame.joystick.get_count()
+Panel1 = pygame.joystick.Joystick(0)
+panel1_instance_id = Panel1.get_instance_id()
 
 # Sound instances
 MAIN_ENGINE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Sounds', 'main_engines.mp3'))
