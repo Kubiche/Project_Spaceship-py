@@ -37,8 +37,9 @@ def get_events():
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:
             Panel1 = pygame.joystick.Joystick(0)
-            Panel1_instance_id = Panel1.get_instance_id()
-            print("Joystick Added")                       
+            panel1_instance_id = Panel1.get_instance_id()
+            print("Joystick Added")
+            print(panel1_instance_id)                       
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick Button Pressed")
             r1.angle = 90
