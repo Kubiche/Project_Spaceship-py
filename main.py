@@ -36,7 +36,7 @@ def get_events():
         if event.type == pygame.QUIT:
             session.running = False
         if event.type == pygame.JOYDEVICEADDED:
-            Panel1 = pygame.joystick.Joystick(0)
+            #Panel1 = pygame.joystick.Joystick(0)
             panel1_instance_id = Panel1.get_instance_id()
             print("Joystick Added")
             print(panel1_instance_id)                       
