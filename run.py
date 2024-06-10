@@ -1,13 +1,12 @@
 import os
 import serial
 import pygame
+import constants as const
 from rocket import Rocket
 
 
-WIDTH,HEIGTH = 1920, 1080
+
 WIN = pygame.display.set_mode((WIDTH, HEIGTH))
-SPACE_GREY = (101,115,126)
-FPS = 60
 pygame.display.set_caption("CURIOSITY SPACE PROGRAM")
 
 
@@ -29,7 +28,8 @@ class Game:
 def check_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            session.running = False        
+            session.running = False
+            continue        
         if event.type == pygame.JOYBUTTONDOWN:
             print("Joystick button down")
             r1.angle = 90
@@ -39,17 +39,20 @@ def check_events():
             MAIN_ENGINE_SOUND.play(-1)
             MAIN_ENGINE_SOUND.set_volume(1)
             r1.engine_on = True
+            continue
         if event.type == pygame.JOYBUTTONUP:
             print("Joystick button up")
             craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
             MAIN_ENGINE_SOUND.stop()
             r1.engine_on = False
             r1.acceleration = -0.01
+            continue
         if event.type == pygame.KEYDOWN:
             print("Key press detected")
             if event.key == pygame.K_ESCAPE:
                 print("Escape key pressed")
                 session.running = False
+                continue
             if event.key == pygame.K_k or event.type == pygame.JOYBUTTONDOWN:  # Engine ON
                 print("k key pressed")
                 r1.angle = 90
@@ -59,20 +62,24 @@ def check_events():
                 MAIN_ENGINE_SOUND.play(-1)
                 MAIN_ENGINE_SOUND.set_volume(1)
                 r1.engine_on = True
+                continue
             if event.key == pygame.K_l or event.type == pygame.JOYBUTTONUP:  # Engine OFF
                 print("l key pressed")
                 craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
                 MAIN_ENGINE_SOUND.stop()
                 r1.engine_on = False
                 r1.acceleration = -0.01
+                continue
             if event.key == pygame.K_LEFT:
                 if r1.engine_on == True:
                     r1.angle += 1
                     craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+                    continue
             if event.key == pygame.K_RIGHT:
                 if r1.engine_on == True:
                     r1.angle -= 1
                     craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_ENGINE_ON_IMAGE, (CRAFT_WIDTH, CRAFT_HEIGTH)), r1.angle)
+                    continue
 
 
 
@@ -121,13 +128,12 @@ craft = pygame.transform.rotate(pygame.transform.scale(CRAFT_IMAGE, (CRAFT_WIDTH
 # serialFromArduino.flush()
 
 
+if __name__ == '__main__':
+    while session.running:
+        clock.tick(FPS)    
+        check_events()     
+        r1.update()  # Updates the rocket properties like velocity, altitude etc.
+        draw_window()
+        print("Velocity:", r1.velocity)
 
-while session.running:
-    clock.tick(FPS)    
-    check_events()     
-    r1.update()  # Updates the rocket properties like velocity, altitude etc.
-    draw_window()
-    print("Velocity:", r1.velocity)
-
-
-pygame.quit()
+    pygame.quit()
